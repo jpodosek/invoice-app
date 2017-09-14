@@ -38,10 +38,10 @@ public class InvoiceController {
 	public ModelAndView list(Authentication auth) {
 		User user = (User) auth.getPrincipal();
 		ModelAndView mv = new ModelAndView("invoices/list");
-		List<Invoice> invoices = invoiceRepository.findAll();
+		//List<Invoice> invoices = invoiceRepository.findAll();
 		mv.addObject("user", user);
-		mv.addObject("showTable", invoices.size() > 0);
-		mv.addObject("invoices", invoices );
+		//mv.addObject("showTable", invoices.size() > 0);
+		mv.addObject("invoices", invoiceRepository.findAll() );
 		return mv;
 	}
 	
@@ -57,7 +57,7 @@ public class InvoiceController {
 	public ModelAndView step2(long clientId) {
 	ModelAndView mv = new ModelAndView("invoices/step-2");
 	mv.addObject("clientId", clientId);
-	mv.addObject("records", billingRecordRepo.findByClientId(clientId));
+	mv.addObject("records", billingRecordRepo.findByClientIdAndLineItemIdIsNull(clientId));
 	return mv;
 	}
 	
