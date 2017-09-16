@@ -7,6 +7,9 @@
 <body>
 {{> common/_navigation }}
 	<h1>Companies</h1>
+	{{#errorMessage}}
+		{{ . }}
+	{{/errorMessage}}
 	<form action="/admin/companies" method="post">
 	<input required type="text" name="name" placeholder="company name">
 		<button>Add Company</button>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Tools</title>
+</head>
+<body>
+{{> common/_navigation }}
+
+<h1>Admin Tools</h1>
+
+<form action="/admin/tools" method="post">
+	<input required type="text" name="name" placeholder="User name">
+		<button>Add User</button>
+		<input type="hidden" name="{{ _csrf.parameterName }}"	value="{{ _csrf.token }}">
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>Username </th>
+				<th>Password</th>
+				<th>Role Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#users}}
+			<tr>
+				<td>{{#username}} {{username}} {{/username}}</td>
+				<td>{{#password}} {{password}} {{/password}}</td>
+				<td> {{#roles}} {{name}} {{/roles}} </td>
+			</tr>
+			{{/users}}
+		</tbody>
+	</table>
+
+
+</body>
+</html>

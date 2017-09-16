@@ -2,6 +2,7 @@ package com.theironyard.invoicify.controllers;
 
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +37,24 @@ public class CompanyController {
 	}
 	
 	@PostMapping("")
-	public String create(String name) {
-		Company company = new Company(name);
-		companyRepo.save(company);
-		return "redirect:/admin/companies";
+	public ModelAndView create(String name) {
+		ModelAndView mv = new ModelAndView();
+		try
+		{
+			Company company = new Company(name);
+			companyRepo.save(company);
+			mv.setViewName("redirect:/admin/companies");
+		} catch (DataIntegrityViolationException dive)
+		{
+			//duplicate company name entered; redirect.
+			System.err.println(dive);
+			List<Company> companies = companyRepo.findAll(new Sort("name"));
+			mv.setViewName("companies/list");
+			mv.addObject("companies", companies );
+			mv.addObject("errorMessage", "That company name already exists.");
+		}
+		
+		return mv;
 	}
 
 }

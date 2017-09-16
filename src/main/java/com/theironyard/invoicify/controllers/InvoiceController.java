@@ -40,9 +40,7 @@ public class InvoiceController {
 	public ModelAndView list(Authentication auth) {
 		User user = (User) auth.getPrincipal();
 		ModelAndView mv = new ModelAndView("invoices/list");
-		//List<Invoice> invoices = invoiceRepository.findAll();
 		mv.addObject("user", user);
-		//mv.addObject("showTable", invoices.size() > 0);
 		mv.addObject("invoices", invoiceRepository.findAll() );
 		return mv;
 	}
