@@ -9,11 +9,25 @@
 
 <h1>Admin Tools</h1>
 
-<form action="/admin/tools" method="post">
-	<input required type="text" name="name" placeholder="User name">
-		<button>Add User</button>
-		<input type="hidden" name="{{ _csrf.parameterName }}"	value="{{ _csrf.token }}">
-	</form>
+<h2>Create a User</h2>
+
+
+
+<form action="/admin/tools/create" method="post">
+	<input required type="text" name="username" placeholder="User name">
+	<input required type="password" name="password" placeholder="password">
+	<select name="userRoleId" required>
+			<option>Choose a role</option> 
+			{{#userRoles}}		
+			<option value="{{id}}">{{#name}} {{name}} {{/name}}</option> 
+			{{/userRoles}}
+		</select>
+	
+	<button>Create User</button><br>
+	<input type="hidden" name="{{ _csrf.parameterName }}"	value="{{ _csrf.token }}">
+</form>
+	
+	
 	<table>
 		<thead>
 			<tr>
@@ -25,8 +39,8 @@
 		<tbody>
 			{{#users}}
 			<tr>
-				<td>{{#username}} {{username}} {{/username}}</td>
-				<td>{{#password}} {{password}} {{/password}}</td>
+				<td>{{#username}} {{.}} {{/username}}</td>
+				<td>{{#password}} {{.}} {{/password}}</td>
 				<td> {{#roles}} {{name}} {{/roles}} </td>
 			</tr>
 			{{/users}}

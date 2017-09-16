@@ -9,16 +9,16 @@
 	<h1>Billing Records</h1>
 
 	<form action="/billing-records/flat-fees" method="post">
-		<h2>Make a flat-fee billing record</h2>
+		<h2>Create a flat-fee billing record</h2>
 		<input type="number" step=".01" name="amount" required
-			placeholder="amount"> <select name="clientId" required>
-			
+			placeholder="amount"> 
+		<select name="clientId" required>
 			<option>Choose one...</option> 
 			{{#companies}}		
 			<option value="{{id}}">{{ name }}</option> 
 			{{/companies}}
-			
-		</select> <input type="text" name="description" required
+		</select>
+		<input type="text" name="description" required
 			placeholder="description">
 		<button>Create me!</button>
 
@@ -26,7 +26,7 @@
 	</form>
 	
 	<form action="/billing-records/rate-based" method="post">
-		<h2>Make a rate-based billing record</h2>
+		<h2>Create a rate-based billing record</h2>
 		<input type="number" step=".01" name="rate" required
 			placeholder="rate"> 
 		<input type="number" step=".01" name="quantity" required

@@ -23,8 +23,6 @@ public class FlatFeeBillingRecordController {
 		this.recordRepository = recordRepository;
 		this.companyRepository = companyRepository;
 	}
-
-
 	
 	@PostMapping("")
 	public ModelAndView create(FlatFeeBillingRecord record, long clientId, Authentication auth) {
