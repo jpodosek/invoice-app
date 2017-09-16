@@ -22,7 +22,7 @@ public class InvoiceControllerTests {
 		user = new User();
 		authentication = mock(Authentication.class);
 		when(authentication.getPrincipal()).thenReturn(user);
-		controller = new InvoiceController();
+		//controller = new InvoiceController();
 	}
 
 	@Test

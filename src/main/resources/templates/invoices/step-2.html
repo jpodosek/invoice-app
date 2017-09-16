@@ -7,14 +7,14 @@
 <body>
 
 <h1>Invoice #</h1>
-
+{{#errorMessage}}
+{{ . }}
+{{/errorMessage}}
 
 <form action="/invoices/create" method="post">
-	<input type="text" name="invoiceNumber" required>
-			
+	<input type="text" name="invoiceNumber" required>	
 		<table>
 		<thead>
-		
 			<tr>
 				<th><th>
 				<th>Created on</th>
