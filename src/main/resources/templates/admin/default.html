@@ -8,7 +8,9 @@
 {{> common/_navigation }}
 
 <h1>Admin Tools</h1>
-
+	{{#errorMessage}}
+		{{ . }}
+	{{/errorMessage}}
 <h2>Create a User</h2>
 
 

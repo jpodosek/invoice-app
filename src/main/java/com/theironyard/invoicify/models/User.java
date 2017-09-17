@@ -20,7 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name="invoicify_user")
+@Table(name="invoice_user")
 public class User implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
